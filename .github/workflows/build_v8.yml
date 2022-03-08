@@ -62,10 +62,10 @@ jobs:
             architecture: x64
             library_name: v8_monolith.lib
 
-          - os: ubuntu-latest
-            name: linux
-            architecture: x64
-            library_name: libv8_monolith.a
+          # - os: ubuntu-latest
+          #   name: linux
+          #   architecture: x64
+          #   library_name: libv8_monolith.a
           
           # - os: macOS-latest
           #   name: macos
