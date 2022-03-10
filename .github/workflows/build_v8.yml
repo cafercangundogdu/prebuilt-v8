@@ -60,7 +60,7 @@ jobs:
           - os: windows-2019
             name: windows
             architecture: x64
-            library_name: v8_monolith.a
+            library_name: libv8_monolith.a
 
           # - os: ubuntu-latest
           #   name: linux
@@ -138,12 +138,16 @@ jobs:
           Copy-Item -Path ./v8/include -Recurse -Filter *.h -Destination ./artifact/ -Container
           Copy-Item -Path ./v8/out.gn/x64.release/obj/${{ matrix.config.library_name }} -Destination ./artifact/${{ matrix.config.name }}_${{ matrix.config.architecture }}_${{ matrix.config.library_name }}
       
+
       - name: Upload Headers & Monolithic Lib
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.config.name }}_${{ matrix.config.architecture }}_v8_monolith
           path: artifact/
-
+      - name: Upload obj Path
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./v8/out.gn/x64.release/obj/
       - name: Publish Compiled Libraries
         if: >-
           startsWith(github.event.head_commit.message, '[Release]') &&
