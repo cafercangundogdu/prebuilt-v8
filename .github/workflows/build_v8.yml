@@ -131,19 +131,19 @@ jobs:
           Get-Content ./out.gn/x64.release/args.gn | Write-Output
           ninja -C out.gn/x64.release
       
-      - name: Prepare Artifact Directory
-        shell: pwsh
-        run: |
-          New-Item -ItemType directory -Path ./artifact/
-          Copy-Item -Path ./v8/include -Recurse -Filter *.h -Destination ./artifact/ -Container
-          Copy-Item -Path ./v8/out.gn/x64.release/obj/${{ matrix.config.library_name }} -Destination ./artifact/${{ matrix.config.name }}_${{ matrix.config.architecture }}_${{ matrix.config.library_name }}
+#       - name: Prepare Artifact Directory
+#         shell: pwsh
+#         run: |
+#           New-Item -ItemType directory -Path ./artifact/
+#           Copy-Item -Path ./v8/include -Recurse -Filter *.h -Destination ./artifact/ -Container
+#           Copy-Item -Path ./v8/out.gn/x64.release/obj/${{ matrix.config.library_name }} -Destination ./artifact/${{ matrix.config.name }}_${{ matrix.config.architecture }}_${{ matrix.config.library_name }}
       
 
-      - name: Upload Headers & Monolithic Lib
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.config.name }}_${{ matrix.config.architecture }}_v8_monolith
-          path: artifact/
+#       - name: Upload Headers & Monolithic Lib
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: ${{ matrix.config.name }}_${{ matrix.config.architecture }}_v8_monolith
+#           path: artifact/
       - name: Upload obj Path
         uses: actions/upload-artifact@v2
         with:
