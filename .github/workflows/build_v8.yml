@@ -1,4 +1,4 @@
-name: Build V8 Static Library
+name: Build V8 Static Library 
 
 on: [ push, pull_request, workflow_dispatch ]
 
